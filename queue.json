@@ -1,5 +1,632 @@
 [
   {
+    "id": 1795020931037,
+    "timestamp": "2026-11-18T16:55:31.037740+00:00",
+    "ingestionSource": "DeclarativeForm_WebMCP",
+    "rawInput": "Declarative Form Staged Hook \ud83d\ude80 #Shorts",
+    "metadata": {
+      "viral_title": "Declarative Form Staged Hook \ud83d\ude80 #Shorts",
+      "title": "Declarative Form Staged Hook \ud83d\ude80 #Shorts",
+      "description": "SEO description",
+      "tags": [
+        "KATSEYE",
+        "Shorts"
+      ],
+      "strategy_tier": "FEED_FUEL"
+    },
+    "script": {
+      "hookDuration": "3s",
+      "pacing": "High retention pivot"
+    },
+    "agentResults": {},
+    "status": "Staged",
+    "confirmation_token": "7295570a-30e1-4452-b365-6d7bf397af36"
+  },
+  {
+    "id": 1795020930269,
+    "timestamp": "2026-11-18T16:55:31.010235+00:00",
+    "ingestionSource": "Reddit_Test_Client",
+    "rawInput": "Live test of pipeline endpoint",
+    "metadata": {
+      "viral_title": "Live test of pipeline endpoint | Full Story Explained \ud83d\udea8 #Shorts",
+      "title": "Live test of pipeline endpoint | Full Story Explained \ud83d\udea8 #Shorts",
+      "description": "Deep dive into the latest subculture trends: Live test of pipeline endpoint.\n\nProduced autonomously via the Ayo's Den Studio Pipeline.\n\n#AyosDen #Trends #Shorts",
+      "tags": [
+        "Ayo's Den",
+        "trending shorts",
+        "pop culture",
+        "subculture update",
+        "YouTube Shorts"
+      ],
+      "strategy_tier": "FEED_FUEL"
+    },
+    "script": {
+      "hookDuration": "3 seconds",
+      "pacing": "Fast narrative pivot from breaking headline to community advocacy stakes"
+    },
+    "agentResults": {
+      "sentiment": {
+        "agent": "Agent 1: Cultural & Sentiment Indexer",
+        "sentiment": "Moderate cultural discourse / Trend propagation",
+        "sparkDetected": true,
+        "emotional_voltage": 2
+      },
+      "velocityCheck": {
+        "agent": "Agent 4: Competitor Intelligence & Velocity Auditor",
+        "velocityScore": 10000.0,
+        "outlierHit": true,
+        "benchmark": "5000 views/hour threshold"
+      },
+      "metadata": {
+        "agent": "Agent 2: Distribution Strategist",
+        "schema_applied": "YouTubeMetadataPayload",
+        "viral_title": "Live test of pipeline endpoint | Full Story Explained \ud83d\udea8 #Shorts",
+        "title": "Live test of pipeline endpoint | Full Story Explained \ud83d\udea8 #Shorts",
+        "description": "Deep dive into the latest subculture trends: Live test of pipeline endpoint.\n\nProduced autonomously via the Ayo's Den Studio Pipeline.\n\n#AyosDen #Trends #Shorts",
+        "tags": [
+          "Ayo's Den",
+          "trending shorts",
+          "pop culture",
+          "subculture update",
+          "YouTube Shorts"
+        ],
+        "strategy_tier": "FEED_FUEL"
+      },
+      "script": {
+        "agent": "Agent 3: Script & Transmission Architect",
+        "hookDuration": "3 seconds",
+        "pacing": "Fast narrative pivot from breaking headline to community advocacy stakes",
+        "targetLength": "45-60s Short",
+        "retention_checkpoint": "0:03 cold open hook lock"
+      },
+      "decisions_gate": {
+        "initial_grade": {
+          "passed": true,
+          "average_score": 2.6,
+          "scores": {
+            "hook_strength": 2.6,
+            "lore_continuity": 2.5,
+            "fan_advocacy_tone": 2.7
+          },
+          "confidence": {
+            "hook_strength": 0.9,
+            "lore_continuity": 0.88,
+            "fan_advocacy_tone": 0.91,
+            "is_grounded_in_lore": 0.94
+          },
+          "is_grounded_in_lore": {
+            "noul": 0.92,
+            "confidence": 0.94
+          },
+          "probabilities": {
+            "hook_strength": {
+              "0": 0.02,
+              "1": 0.08,
+              "2": 0.3,
+              "3": 0.6
+            },
+            "lore_continuity": {
+              "0": 0.03,
+              "1": 0.09,
+              "2": 0.38,
+              "3": 0.5
+            },
+            "fan_advocacy_tone": {
+              "0": 0.01,
+              "1": 0.07,
+              "2": 0.28,
+              "3": 0.64
+            }
+          },
+          "failing_criteria": [],
+          "latency_ms": 739.19
+        },
+        "rewritten": false,
+        "failing_criteria": [],
+        "final_grade": {
+          "passed": true,
+          "average_score": 2.6,
+          "scores": {
+            "hook_strength": 2.6,
+            "lore_continuity": 2.5,
+            "fan_advocacy_tone": 2.7
+          },
+          "confidence": {
+            "hook_strength": 0.9,
+            "lore_continuity": 0.88,
+            "fan_advocacy_tone": 0.91,
+            "is_grounded_in_lore": 0.94
+          },
+          "is_grounded_in_lore": {
+            "noul": 0.92,
+            "confidence": 0.94
+          },
+          "probabilities": {
+            "hook_strength": {
+              "0": 0.02,
+              "1": 0.08,
+              "2": 0.3,
+              "3": 0.6
+            },
+            "lore_continuity": {
+              "0": 0.03,
+              "1": 0.09,
+              "2": 0.38,
+              "3": 0.5
+            },
+            "fan_advocacy_tone": {
+              "0": 0.01,
+              "1": 0.07,
+              "2": 0.28,
+              "3": 0.64
+            }
+          },
+          "failing_criteria": [],
+          "latency_ms": 739.19
+        },
+        "passed": true
+      }
+    },
+    "status": "Staged",
+    "confirmation_token": "451c0bc9-0342-452d-a072-52226b8c19bb"
+  },
+  {
+    "id": 1795020927970,
+    "timestamp": "2026-11-18T16:55:30.238366+00:00",
+    "ingestionSource": "Reddit_Test",
+    "rawInput": "Megan and Daniela tour perks update",
+    "metadata": {
+      "viral_title": "Megan and Daniela tour perks update | Full Story Explained \ud83d\udea8 #Shorts",
+      "title": "Megan and Daniela tour perks update | Full Story Explained \ud83d\udea8 #Shorts",
+      "description": "Deep dive into the latest subculture trends: Megan and Daniela tour perks update.\n\nProduced autonomously via the Ayo's Den Studio Pipeline.\n\n#AyosDen #Trends #Shorts",
+      "tags": [
+        "Ayo's Den",
+        "trending shorts",
+        "pop culture",
+        "subculture update",
+        "YouTube Shorts"
+      ],
+      "strategy_tier": "FEED_FUEL"
+    },
+    "script": {
+      "hookDuration": "3 seconds",
+      "pacing": "Fast narrative pivot from breaking headline to community advocacy stakes"
+    },
+    "agentResults": {
+      "sentiment": {
+        "agent": "Agent 1: Cultural & Sentiment Indexer",
+        "sentiment": "Moderate cultural discourse / Trend propagation",
+        "sparkDetected": true,
+        "emotional_voltage": 2
+      },
+      "velocityCheck": {
+        "agent": "Agent 4: Competitor Intelligence & Velocity Auditor",
+        "velocityScore": 8000.0,
+        "outlierHit": true,
+        "benchmark": "5000 views/hour threshold"
+      },
+      "metadata": {
+        "agent": "Agent 2: Distribution Strategist",
+        "schema_applied": "YouTubeMetadataPayload",
+        "viral_title": "Megan and Daniela tour perks update | Full Story Explained \ud83d\udea8 #Shorts",
+        "title": "Megan and Daniela tour perks update | Full Story Explained \ud83d\udea8 #Shorts",
+        "description": "Deep dive into the latest subculture trends: Megan and Daniela tour perks update.\n\nProduced autonomously via the Ayo's Den Studio Pipeline.\n\n#AyosDen #Trends #Shorts",
+        "tags": [
+          "Ayo's Den",
+          "trending shorts",
+          "pop culture",
+          "subculture update",
+          "YouTube Shorts"
+        ],
+        "strategy_tier": "FEED_FUEL"
+      },
+      "script": {
+        "agent": "Agent 3: Script & Transmission Architect",
+        "hookDuration": "3 seconds",
+        "pacing": "Fast narrative pivot from breaking headline to community advocacy stakes",
+        "targetLength": "45-60s Short",
+        "retention_checkpoint": "0:03 cold open hook lock"
+      },
+      "decisions_gate": {
+        "initial_grade": {
+          "passed": true,
+          "average_score": 2.6,
+          "scores": {
+            "hook_strength": 2.6,
+            "lore_continuity": 2.5,
+            "fan_advocacy_tone": 2.7
+          },
+          "confidence": {
+            "hook_strength": 0.9,
+            "lore_continuity": 0.88,
+            "fan_advocacy_tone": 0.91,
+            "is_grounded_in_lore": 0.94
+          },
+          "is_grounded_in_lore": {
+            "noul": 0.92,
+            "confidence": 0.94
+          },
+          "probabilities": {
+            "hook_strength": {
+              "0": 0.02,
+              "1": 0.08,
+              "2": 0.3,
+              "3": 0.6
+            },
+            "lore_continuity": {
+              "0": 0.03,
+              "1": 0.09,
+              "2": 0.38,
+              "3": 0.5
+            },
+            "fan_advocacy_tone": {
+              "0": 0.01,
+              "1": 0.07,
+              "2": 0.28,
+              "3": 0.64
+            }
+          },
+          "failing_criteria": [],
+          "latency_ms": 2266.43
+        },
+        "rewritten": false,
+        "failing_criteria": [],
+        "final_grade": {
+          "passed": true,
+          "average_score": 2.6,
+          "scores": {
+            "hook_strength": 2.6,
+            "lore_continuity": 2.5,
+            "fan_advocacy_tone": 2.7
+          },
+          "confidence": {
+            "hook_strength": 0.9,
+            "lore_continuity": 0.88,
+            "fan_advocacy_tone": 0.91,
+            "is_grounded_in_lore": 0.94
+          },
+          "is_grounded_in_lore": {
+            "noul": 0.92,
+            "confidence": 0.94
+          },
+          "probabilities": {
+            "hook_strength": {
+              "0": 0.02,
+              "1": 0.08,
+              "2": 0.3,
+              "3": 0.6
+            },
+            "lore_continuity": {
+              "0": 0.03,
+              "1": 0.09,
+              "2": 0.38,
+              "3": 0.5
+            },
+            "fan_advocacy_tone": {
+              "0": 0.01,
+              "1": 0.07,
+              "2": 0.28,
+              "3": 0.64
+            }
+          },
+          "failing_criteria": [],
+          "latency_ms": 2266.43
+        },
+        "passed": true
+      }
+    },
+    "status": "Staged",
+    "confirmation_token": "ef9a4428-df0b-4632-90df-9366c316058e"
+  },
+  {
+    "id": 1795020927719,
+    "timestamp": "2026-11-18T16:55:27.720138+00:00",
+    "ingestionSource": "Reddit_Rewrite_Test",
+    "rawInput": "KATSEYE Detroit show canceled after soundcheck",
+    "metadata": {
+      "viral_title": "KATSEYE BREAKING: KATSEYE Detroit show canceled after so... The Real Reason Why \ud83d\udea8 #Shorts",
+      "title": "KATSEYE BREAKING: KATSEYE Detroit show canceled after so... The Real Reason Why \ud83d\udea8 #Shorts",
+      "description": "Ayo's Den Exclusive Dossier: Situating today's developments within our ongoing channel narrative. Ground-truth context: KATSEYE Detroit show canceled after soundcheck.\n\nContext breakdown: KATSEYE Detroit show canceled after soundcheck\n\nWhen management leaves a vacuum of answers, the narrative gets left in the audience's hands. Ayo's Den breakdown of venue shifts and community advocacy.\n\n#KATSEYE #EYEKONS #Shorts\n\nSOVEREIGN ADVOCACY PERSPECTIVE: When management creates an information vacuum, the audience deserves unfiltered accountability and transparency.",
+      "tags": [
+        "KATSEYE",
+        "HxG",
+        "EYEKONS",
+        "tour update",
+        "Ayo's Den",
+        "YouTube Shorts"
+      ],
+      "strategy_tier": "FEED_FUEL"
+    },
+    "script": {
+      "hookDuration": "2 seconds",
+      "pacing": "Aggressive 0:02 high-voltage shock hook locking in 100% viewer retention before fast narrative pivot"
+    },
+    "agentResults": {
+      "sentiment": {
+        "agent": "Agent 1: Cultural & Sentiment Indexer",
+        "sentiment": "High engagement / Fan advocacy friction",
+        "sparkDetected": true,
+        "emotional_voltage": 4
+      },
+      "velocityCheck": {
+        "agent": "Agent 4: Competitor Intelligence & Velocity Auditor",
+        "velocityScore": 9000.0,
+        "outlierHit": true,
+        "benchmark": "5000 views/hour threshold"
+      },
+      "metadata": {
+        "agent": "Agent 2: Distribution Strategist",
+        "schema_applied": "YouTubeMetadataPayload",
+        "viral_title": "KATSEYE BREAKING: KATSEYE Detroit show canceled after so... The Real Reason Why \ud83d\udea8 #Shorts",
+        "title": "KATSEYE BREAKING: KATSEYE Detroit show canceled after so... The Real Reason Why \ud83d\udea8 #Shorts",
+        "description": "Ayo's Den Exclusive Dossier: Situating today's developments within our ongoing channel narrative. Ground-truth context: KATSEYE Detroit show canceled after soundcheck.\n\nContext breakdown: KATSEYE Detroit show canceled after soundcheck\n\nWhen management leaves a vacuum of answers, the narrative gets left in the audience's hands. Ayo's Den breakdown of venue shifts and community advocacy.\n\n#KATSEYE #EYEKONS #Shorts\n\nSOVEREIGN ADVOCACY PERSPECTIVE: When management creates an information vacuum, the audience deserves unfiltered accountability and transparency.",
+        "tags": [
+          "KATSEYE",
+          "HxG",
+          "EYEKONS",
+          "tour update",
+          "Ayo's Den",
+          "YouTube Shorts"
+        ],
+        "strategy_tier": "FEED_FUEL"
+      },
+      "script": {
+        "agent": "Agent 3: Script & Transmission Architect",
+        "hookDuration": "2 seconds",
+        "pacing": "Aggressive 0:02 high-voltage shock hook locking in 100% viewer retention before fast narrative pivot",
+        "targetLength": "45-60s Short",
+        "retention_checkpoint": "0:03 cold open hook lock"
+      },
+      "decisions_gate": {
+        "initial_grade": {
+          "passed": false,
+          "average_score": 1.267,
+          "scores": {
+            "hook_strength": 1.1,
+            "lore_continuity": 1.4,
+            "fan_advocacy_tone": 1.3
+          },
+          "confidence": {
+            "hook_strength": 0.85,
+            "lore_continuity": 0.8,
+            "fan_advocacy_tone": 0.82,
+            "is_grounded_in_lore": 0.9
+          },
+          "is_grounded_in_lore": {
+            "noul": 0.85,
+            "confidence": 0.9
+          },
+          "probabilities": {
+            "hook_strength": {
+              "0": 0.05,
+              "1": 0.1,
+              "2": 0.35,
+              "3": 0.5
+            },
+            "lore_continuity": {
+              "0": 0.05,
+              "1": 0.1,
+              "2": 0.35,
+              "3": 0.5
+            },
+            "fan_advocacy_tone": {
+              "0": 0.05,
+              "1": 0.1,
+              "2": 0.35,
+              "3": 0.5
+            }
+          },
+          "failing_criteria": [
+            "hook_strength",
+            "lore_continuity",
+            "fan_advocacy_tone"
+          ],
+          "latency_ms": 0.02
+        },
+        "rewritten": true,
+        "failing_criteria": [
+          "hook_strength",
+          "lore_continuity",
+          "fan_advocacy_tone"
+        ],
+        "final_grade": {
+          "passed": true,
+          "average_score": 2.8,
+          "scores": {
+            "hook_strength": 2.9,
+            "lore_continuity": 2.8,
+            "fan_advocacy_tone": 2.7
+          },
+          "confidence": {
+            "hook_strength": 0.95,
+            "lore_continuity": 0.94,
+            "fan_advocacy_tone": 0.93,
+            "is_grounded_in_lore": 0.96
+          },
+          "is_grounded_in_lore": {
+            "noul": 0.95,
+            "confidence": 0.96
+          },
+          "probabilities": {
+            "hook_strength": {
+              "0": 0.05,
+              "1": 0.1,
+              "2": 0.35,
+              "3": 0.5
+            },
+            "lore_continuity": {
+              "0": 0.05,
+              "1": 0.1,
+              "2": 0.35,
+              "3": 0.5
+            },
+            "fan_advocacy_tone": {
+              "0": 0.05,
+              "1": 0.1,
+              "2": 0.35,
+              "3": 0.5
+            }
+          },
+          "failing_criteria": [],
+          "latency_ms": 0.01
+        },
+        "passed": true
+      }
+    },
+    "status": "Staged",
+    "confirmation_token": "6ab0423c-98cc-4986-9fe5-62b8bacf9f3c"
+  },
+  {
+    "id": 1795020927709,
+    "timestamp": "2026-11-18T16:55:27.710272+00:00",
+    "ingestionSource": "Reddit_High_Score_Test",
+    "rawInput": "KATSEYE Detroit show venue shifts and fan advocacy",
+    "metadata": {
+      "viral_title": "KATSEYE Alert: KATSEYE Detroit show venue shifts and fan adv \ud83d\udea8 #Shorts",
+      "title": "KATSEYE Alert: KATSEYE Detroit show venue shifts and fan adv \ud83d\udea8 #Shorts",
+      "description": "Context breakdown: KATSEYE Detroit show venue shifts and fan advocacy\n\nWhen management leaves a vacuum of answers, the narrative gets left in the audience's hands. Ayo's Den breakdown of venue shifts and community advocacy.\n\n#KATSEYE #EYEKONS #Shorts",
+      "tags": [
+        "KATSEYE",
+        "HxG",
+        "EYEKONS",
+        "tour update",
+        "Ayo's Den",
+        "YouTube Shorts"
+      ],
+      "strategy_tier": "FEED_FUEL"
+    },
+    "script": {
+      "hookDuration": "3 seconds",
+      "pacing": "Fast narrative pivot from breaking headline to community advocacy stakes"
+    },
+    "agentResults": {
+      "sentiment": {
+        "agent": "Agent 1: Cultural & Sentiment Indexer",
+        "sentiment": "Moderate cultural discourse / Trend propagation",
+        "sparkDetected": true,
+        "emotional_voltage": 2
+      },
+      "velocityCheck": {
+        "agent": "Agent 4: Competitor Intelligence & Velocity Auditor",
+        "velocityScore": 8000.0,
+        "outlierHit": true,
+        "benchmark": "5000 views/hour threshold"
+      },
+      "metadata": {
+        "agent": "Agent 2: Distribution Strategist",
+        "schema_applied": "YouTubeMetadataPayload",
+        "viral_title": "KATSEYE Alert: KATSEYE Detroit show venue shifts and fan adv \ud83d\udea8 #Shorts",
+        "title": "KATSEYE Alert: KATSEYE Detroit show venue shifts and fan adv \ud83d\udea8 #Shorts",
+        "description": "Context breakdown: KATSEYE Detroit show venue shifts and fan advocacy\n\nWhen management leaves a vacuum of answers, the narrative gets left in the audience's hands. Ayo's Den breakdown of venue shifts and community advocacy.\n\n#KATSEYE #EYEKONS #Shorts",
+        "tags": [
+          "KATSEYE",
+          "HxG",
+          "EYEKONS",
+          "tour update",
+          "Ayo's Den",
+          "YouTube Shorts"
+        ],
+        "strategy_tier": "FEED_FUEL"
+      },
+      "script": {
+        "agent": "Agent 3: Script & Transmission Architect",
+        "hookDuration": "3 seconds",
+        "pacing": "Fast narrative pivot from breaking headline to community advocacy stakes",
+        "targetLength": "45-60s Short",
+        "retention_checkpoint": "0:03 cold open hook lock"
+      },
+      "decisions_gate": {
+        "initial_grade": {
+          "passed": true,
+          "average_score": 2.8,
+          "scores": {
+            "hook_strength": 2.8,
+            "lore_continuity": 2.7,
+            "fan_advocacy_tone": 2.9
+          },
+          "confidence": {
+            "hook_strength": 0.95,
+            "lore_continuity": 0.92,
+            "fan_advocacy_tone": 0.96,
+            "is_grounded_in_lore": 0.95
+          },
+          "is_grounded_in_lore": {
+            "noul": 0.95,
+            "confidence": 0.95
+          },
+          "probabilities": {
+            "hook_strength": {
+              "0": 0.05,
+              "1": 0.1,
+              "2": 0.35,
+              "3": 0.5
+            },
+            "lore_continuity": {
+              "0": 0.05,
+              "1": 0.1,
+              "2": 0.35,
+              "3": 0.5
+            },
+            "fan_advocacy_tone": {
+              "0": 0.05,
+              "1": 0.1,
+              "2": 0.35,
+              "3": 0.5
+            }
+          },
+          "failing_criteria": [],
+          "latency_ms": 0.02
+        },
+        "rewritten": false,
+        "failing_criteria": [],
+        "final_grade": {
+          "passed": true,
+          "average_score": 2.8,
+          "scores": {
+            "hook_strength": 2.8,
+            "lore_continuity": 2.7,
+            "fan_advocacy_tone": 2.9
+          },
+          "confidence": {
+            "hook_strength": 0.95,
+            "lore_continuity": 0.92,
+            "fan_advocacy_tone": 0.96,
+            "is_grounded_in_lore": 0.95
+          },
+          "is_grounded_in_lore": {
+            "noul": 0.95,
+            "confidence": 0.95
+          },
+          "probabilities": {
+            "hook_strength": {
+              "0": 0.05,
+              "1": 0.1,
+              "2": 0.35,
+              "3": 0.5
+            },
+            "lore_continuity": {
+              "0": 0.05,
+              "1": 0.1,
+              "2": 0.35,
+              "3": 0.5
+            },
+            "fan_advocacy_tone": {
+              "0": 0.05,
+              "1": 0.1,
+              "2": 0.35,
+              "3": 0.5
+            }
+          },
+          "failing_criteria": [],
+          "latency_ms": 0.02
+        },
+        "passed": true
+      }
+    },
+    "status": "Staged",
+    "confirmation_token": "4fae6a58-4e36-4351-b54d-bf34635a286d"
+  },
+  {
     "id": 1795020520871,
     "timestamp": "2026-11-18T16:48:40.871619+00:00",
     "ingestionSource": "DeclarativeForm_WebMCP",
