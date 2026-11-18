@@ -1,4 +1,4 @@
-# Ayo's Den & IoChat Studio Pipeline
+# Ayo's Den & AyoChat Studio Pipeline
 
 [![Python](https://img.shields.io/badge/Python-3.12%2B-blue.svg)](https://python.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115%2B-009688.svg)](https://fastapi.tiangolo.com)
@@ -7,7 +7,7 @@
 [![Protocol](https://img.shields.io/badge/WebMCP-JSON--RPC%202.0-orange.svg)](#webmcp-protocol)
 [![Tests](https://img.shields.io/badge/Tests-30%20passing-brightgreen.svg)](#test-suite)
 
-An autonomous content intelligence engine, video production pipeline, and community frame-control platform built for **Ayo's Den** and **IoChat**. 
+An autonomous content intelligence engine, video production pipeline, and community frame-control platform built for **Ayo's Den** and **Ayodesci** youtube channels. 
 
 The system couples a 4-agent autonomous graph with Google's zero-output-token **Gemini Decisions API** (`gemini-decision-1`), deterministic **Before-Tool Guardrails**, browser-native **WebMCP** WebSocket JSON-RPC 2.0 integration, and edge **Context Governance** (PII redaction, prompt injection filtering, sliding-window rate limiting).
 
@@ -281,4 +281,4 @@ tests/test_webmcp_rpc.py::test_websocket_webmcp_rpc PASSED
 ---
 
 ## License
-MIT License. Created for the Ayo's Den & IoChat Studio Command Deck.
+MIT License. Created for the Ayo's Den & AyoChat Studio Command Deck.
