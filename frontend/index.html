@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ayo's Den Studio Command Deck · Unified WebMCP + Google ADK</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090a0f;
+      --surface: #11141e;
+      --surface-border: #1e2436;
+      --surface-hover: #171b29;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --amber: #f59e0b;
+      --amber-glow: rgba(245, 158, 11, 0.2);
+      --crimson: #ef4444;
+      --emerald: #10b981;
+      --cyan: #06b6d4;
+      --indigo: #6366f1;
+      --radius: 12px;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    header {
+      background-color: rgba(17, 20, 30, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--surface-border);
+      padding: 0.875rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+    }
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--amber), #d97706);
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: #000;
+    }
+    .brand-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+    }
+    .brand-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+    .header-pills {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    .pill {
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      padding: 0.35rem 0.75rem;
+      border-radius: 9999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(30, 36, 54, 0.6);
+      border: 1px solid var(--surface-border);
+    }
+    .pill.active {
+      background: rgba(16, 185, 129, 0.15);
+      border-color: rgba(16, 185, 129, 0.4);
+      color: var(--emerald);
+    }
+    .pill.active::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--emerald);
+      box-shadow: 0 0 8px var(--emerald);
+    }
+
+    /* Navigation Tabs */
+    .nav-tabs {
+      display: flex;
+      gap: 0.5rem;
+      padding: 1rem 2rem 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--surface-border);
+    }
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: 0.6rem 1.25rem;
+      border-radius: 8px 8px 0 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.15s ease;
+      border-bottom: 2px solid transparent;
+    }
+    .tab-btn:hover { color: var(--text); background: rgba(30, 36, 54, 0.3); }
+    .tab-btn.active {
+      color: var(--amber);
+      border-bottom-color: var(--amber);
+      background: var(--surface);
+    }
+
+    /* Main Container */
+    main {
+      flex: 1;
+      padding: 2rem;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+
+    /* Grid Layouts */
+    .deck-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 1024px) {
+      .deck-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Cards */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .card-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
+    /* Forms */
+    .form-group {
+      margin-bottom: 1.1rem;
+    }
+    label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    input[type="text"], select, textarea {
+      width: 100%;
+      background: #0b0d14;
+      border: 1px solid var(--surface-border);
+      border-radius: 8px;
+      padding: 0.65rem 0.875rem;
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      transition: border-color 0.15s ease;
+    }
+    input[type="text"]:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--amber);
+      box-shadow: 0 0 0 2px var(--amber-glow);
+    }
+    textarea { resize: vertical; min-height: 90px; }
+
+    /* Buttons */
+    .btn {
+      padding: 0.65rem 1.25rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.875rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: none;
+      transition: all 0.15s ease;
+    }
+    .btn-primary {
+      background: var(--amber);
+      color: #000;
+    }
+    .btn-primary:hover {
+      background: #fbbf24;
+      box-shadow: 0 0 16px var(--amber-glow);
+    }
+    .btn-secondary {
+      background: var(--surface-border);
+      color: var(--text);
+    }
+    .btn-secondary:hover { background: #2d3748; }
+    .btn-agent {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      color: #fff;
+    }
+    .btn-agent:hover { opacity: 0.9; }
+
+    /* Feed Items */
+    .queue-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.875rem;
+      max-height: 580px;
+      overflow-y: auto;
+    }
+    .feed-item {
+      background: #0d101a;
+      border: 1px solid var(--surface-border);
+      border-radius: 8px;
+      padding: 1rem;
+      transition: border-color 0.15s ease;
+    }
+    .feed-item:hover { border-color: rgba(245, 158, 11, 0.4); }
+    .feed-item-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      margin-bottom: 0.4rem;
+    }
+    .feed-item-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 0.35rem;
+      color: #fff;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      font-weight: 600;
+    }
+    .badge-feed { background: rgba(245, 158, 11, 0.15); color: var(--amber); }
+    .badge-seo { background: rgba(6, 182, 212, 0.15); color: var(--cyan); }
+    .badge-agent { background: rgba(99, 102, 241, 0.2); color: #a5b4fc; }
+
+    /* Inspector Console */
+    .inspector-console {
+      background: #06070a;
+      border: 1px solid var(--surface-border);
+      border-radius: 8px;
+      padding: 1rem;
+      height: 520px;
+      overflow-y: auto;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+    }
+    .log-entry {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .log-meta {
+      display: flex;
+      gap: 0.75rem;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+    .log-content {
+      background: rgba(17, 20, 30, 0.6);
+      padding: 0.5rem;
+      border-radius: 4px;
+      overflow-x: auto;
+      color: #cbd5e1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header>
+    <div class="brand">
+      <div class="brand-logo">A</div>
+      <div>
+        <div class="brand-title">Ayo's Den Studio Command Deck</div>
+        <div class="brand-sub">Unified WebMCP Browser Engine + Google ADK Backend</div>
+      </div>
+    </div>
+    <div class="header-pills">
+      <div id="ws-status" class="pill active">WebSocket: Connected</div>
+      <div class="pill">Channel: Ayo's Den</div>
+      <div class="pill">ADK: webmcp_agent</div>
+    </div>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <nav class="nav-tabs">
+    <button class="tab-btn active" onclick="switchTab('ideation')">
+      🎬 Video Ideation &amp; Metadata
+    </button>
+    <button class="tab-btn" onclick="switchTab('comments')">
+      💬 Sovereign Comment ModDeck
+    </button>
+    <button class="tab-btn" onclick="switchTab('imperative')">
+      ⚡ Imperative Tools (modelContext)
+    </button>
+    <button class="tab-btn" onclick="switchTab('inspector')">
+      🔍 WebMCP JSON-RPC Inspector
+    </button>
+  </nav>
+
+  <!-- Main Workspace -->
+  <main>
+
+    <!-- Tab 1: Video Ideation & Metadata Deck -->
+    <div id="tab-ideation" class="tab-pane active">
+      <div class="deck-grid">
+        
+        <!-- Left Panel: Declarative WebMCP Video Metadata Form -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">📝 Declarative WebMCP Metadata Form</div>
+              <div class="card-subtitle">&lt;form toolname="stage_video_metadata"&gt; with SubmitEvent.agentInvoked inspection</div>
+            </div>
+            <span class="badge badge-feed">FEED_FUEL</span>
+          </div>
+
+          <form id="metadata-form" toolname="stage_video_metadata" tooldescription="Stages optimized YouTube video title, SEO description, tags, and strategy tier">
+            <input type="hidden" name="id" id="meta-id" value="" />
+            <input type="hidden" name="ingestionSource" value="Ayo's Den Command Deck" />
+
+            <div class="form-group">
+              <label>Viral Double-Layer Title</label>
+              <input type="text" id="meta-title" name="viral_title" value="Should KATSEYE Cancel The Tour? Management Silence Explained 🚨 #Shorts" required />
+            </div>
+
+            <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div>
+                <label>Strategy Tier</label>
+                <select id="meta-tier" name="strategy_tier">
+                  <option value="FEED_FUEL">FEED_FUEL (Shorts Velocity)</option>
+                  <option value="SEO_ARTIFACT">SEO_ARTIFACT (Long-Tail Search)</option>
+                  <option value="SOVEREIGN_BEACON">SOVEREIGN_BEACON (Lore Anchor)</option>
+                </select>
+              </div>
+              <div>
+                <label>Hook Duration</label>
+                <input type="text" id="meta-hook" name="hookDuration" value="3 seconds" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Pacing Directive</label>
+              <input type="text" id="meta-pacing" name="pacing" value="Fast narrative pivot from news to consumer advocacy" />
+            </div>
+
+            <div class="form-group">
+              <label>Optimized Search Tags (Comma-Separated)</label>
+              <input type="text" id="meta-tags" name="tags" value="KATSEYE, HxG, EYEKONS, tour cancellation, Ayo's Den, YouTube Shorts" />
+            </div>
+
+            <div class="form-group">
+              <label>SEO-Dense Description &amp; Timestamps</label>
+              <textarea id="meta-desc" name="description" rows="4">When management leaves a vacuum of answers, the narrative gets left in the audience's hands. Context breakdown of Detroit venue changes and fan advocacy responses.
+
+#KATSEYE #EYEKONS #Shorts</textarea>
+            </div>
+
+            <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem;">
+              <button type="submit" class="btn btn-primary" onclick="window.__currentAgentInvoked = false;">
+                ✓ Approve &amp; Stage (Human)
+              </button>
+              <button type="button" class="btn btn-agent" onclick="triggerAgentFormSubmit('metadata-form')">
+                🤖 Simulate AI Agent Submit (agentInvoked=true)
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Right Panel: Persistent Queue State (queue.json mirror) -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">📦 Persistent Staged Queue</div>
+              <div class="card-subtitle">Synchronized live with SQLite &amp; queue.json</div>
+            </div>
+            <button class="btn btn-secondary" style="padding: 0.35rem 0.75rem; font-size: 0.75rem;" onclick="refreshState()">
+              ↻ Refresh
+            </button>
+          </div>
+
+          <div class="queue-list" id="queue-feed-container">
+            <!-- Dynamic Queue Items rendered here -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Tab 2: Sovereign Comment ModDeck (IoChat) -->
+    <div id="tab-comments" class="tab-pane">
+      <div class="deck-grid">
+
+        <!-- Left Panel: Declarative WebMCP Comment Reply Form -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">💬 Declarative Comment Reply Form</div>
+              <div class="card-subtitle">&lt;form toolname="stage_comment_reply"&gt; with 12-Word Brevity Cap Gate</div>
+            </div>
+            <span class="badge badge-agent">IoChat Swarm</span>
+          </div>
+
+          <form id="comment-reply-form" toolname="stage_comment_reply" tooldescription="Stages calibrated sovereign reply to an inbound YouTube comment thread">
+            <input type="hidden" name="record_id" id="reply-record-id" value="" />
+            <input type="hidden" name="action" id="reply-action" value="approve" />
+
+            <div class="form-group">
+              <label>Inbound Viewer Comment</label>
+              <div id="preview-inbound-text" style="background: #06070a; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--surface-border); font-size: 0.9rem; color: #cbd5e1;">
+                "Men used to go to war, now they make tiktok dance updates smh"
+              </div>
+            </div>
+
+            <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div>
+                <label>Detected Semiotic Intent</label>
+                <input type="text" id="preview-intent" value="TROLL_ATTACK (LOW_EFFORT_BAIT)" readonly style="background: #11141e;" />
+              </div>
+              <div>
+                <label>Energy Voltage</label>
+                <input type="text" id="preview-energy" value="4 / 5 Voltage" readonly style="background: #11141e;" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Calibrated Sovereign Reply (Max 12 Words)</label>
+              <textarea id="reply-final-text" name="final_reply" rows="3">and you're losing one in my comments rn.</textarea>
+            </div>
+
+            <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem;">
+              <button type="submit" class="btn btn-primary" onclick="setCommentAction('approve'); window.__currentAgentInvoked = false;">
+                ✓ Approve &amp; Dispatch
+              </button>
+              <button type="submit" class="btn btn-secondary" onclick="setCommentAction('edit'); window.__currentAgentInvoked = false;">
+                ✏️ Calibrate &amp; Edit
+              </button>
+              <button type="submit" class="btn btn-secondary" style="color: var(--crimson);" onclick="setCommentAction('skip'); window.__currentAgentInvoked = false;">
+                ⏩ Skip
+              </button>
+              <button type="button" class="btn btn-agent" onclick="triggerAgentFormSubmit('comment-reply-form')">
+                🤖 Auto-Approve (agentInvoked)
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Right Panel: Inbound Comments Queue -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">📥 Inbound Comments Queue</div>
+              <div class="card-subtitle">Pending creator approval before YouTube dispatch</div>
+            </div>
+            <button class="btn btn-secondary" style="padding: 0.35rem 0.75rem; font-size: 0.75rem;" onclick="refreshState()">
+              ↻ Refresh
+            </button>
+          </div>
+
+          <div class="queue-list" id="comments-queue-container">
+            <!-- Dynamic comments rendered here -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Tab 3: Imperative WebMCP Tools Bar -->
+    <div id="tab-imperative" class="tab-pane">
+      <div class="card" style="margin-bottom: 1.5rem;">
+        <div class="card-header">
+          <div>
+            <div class="card-title">⚡ Imperative WebMCP Tools (navigator.modelContext)</div>
+            <div class="card-subtitle">Direct execution of browser-native registered functions</div>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+          
+          <div class="feed-item">
+            <div class="feed-item-title">📡 poll_reddit_and_velocity</div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Polls trending subculture feeds from r/KATSEYE and triggers 4-agent velocity checks.
+            </p>
+            <button class="btn btn-primary" style="width: 100%;" onclick="executeImperativeTool('poll_reddit_and_velocity')">
+              Run poll_reddit_and_velocity
+            </button>
+          </div>
+
+          <div class="feed-item">
+            <div class="feed-item-title">📜 query_channel_lore</div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Queries historical narrative arcs from queue.json to ensure storyline continuity.
+            </p>
+            <button class="btn btn-secondary" style="width: 100%;" onclick="executeImperativeTool('query_channel_lore')">
+              Run query_channel_lore
+            </button>
+          </div>
+
+          <div class="feed-item">
+            <div class="feed-item-title">🔄 sync_youtube_studio_drafts</div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Syncs staged metadata payloads with YouTube Studio draft states.
+            </p>
+            <button class="btn btn-secondary" style="width: 100%;" onclick="executeImperativeTool('sync_youtube_studio_drafts')">
+              Run sync_youtube_studio_drafts
+            </button>
+          </div>
+
+          <div class="feed-item">
+            <div class="feed-item-title">🚀 4-Agent Pipeline Cycle</div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Sentiment Indexer -> Competitor Velocity -> Distribution Strategist -> Script Architect.
+            </p>
+            <button class="btn btn-agent" style="width: 100%;" onclick="executeFullPipeline()">
+              Run Autonomous Cycle
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 4: WebMCP JSON-RPC Inspector -->
+    <div id="tab-inspector" class="tab-pane">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">🔍 WebMCP JSON-RPC 2.0 Live Inspector</div>
+            <div class="card-subtitle">Real-time audit log of tool arguments, return payloads, and SubmitEvent.agentInvoked events</div>
+          </div>
+          <button class="btn btn-secondary" style="padding: 0.35rem 0.75rem; font-size: 0.75rem;" onclick="clearInspector()">
+            Clear Console
+          </button>
+        </div>
+
+        <div class="inspector-console" id="inspector-stream">
+          <!-- Dynamic JSON-RPC log entries streamed here -->
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- WebMCP JavaScript Logic -->
+  <script>
+    // Tab switching
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+      
+      const targetPane = document.getElementById(`tab-${tabId}`);
+      if (targetPane) targetPane.classList.add('active');
+      
+      const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
+      if (activeBtn) activeBtn.classList.add('active');
+    }
+
+    function setCommentAction(action) {
+      document.getElementById('reply-action').value = action;
+    }
+
+    // ------------------------------------------------------------------------
+    // WebMCP Model Context Protocol Imperative Polyfill
+    // ------------------------------------------------------------------------
+    if (!('modelContext' in navigator)) {
+      navigator.modelContext = {
+        tools: new Map(),
+        registerTool(tool) {
+          this.tools.set(tool.name, tool);
+          console.log(`[WebMCP] Registered imperative tool: ${tool.name}`);
+          logInspector("IMPERATIVE_TOOL_REGISTERED", { name: tool.name, description: tool.description });
+        },
+        getTools() { return Array.from(this.tools.values()); },
+        async executeTool(name, input) {
+          const t = this.tools.get(name);
+          if (!t) throw new Error(`Tool ${name} not registered`);
+          return await t.execute(input);
+        }
+      };
+    }
+
+    // Register Imperative Tools
+    navigator.modelContext.registerTool({
+      name: "poll_reddit_and_velocity",
+      description: "Polls live Reddit/X streams for trending chatter and computes competitor velocity score.",
+      inputSchema: { type: "object", properties: { subreddit: { type: "string" } } },
+      execute: async (input) => {
+        return await sendRpc("tools/call", {
+          name: "run_autonomous_pipeline",
+          arguments: {
+            source: "Reddit_r_KATSEYE",
+            raw_text: "Detroit show canceled after soundcheck, fans demanding answers and refunds",
+            competitor_views: 18500,
+            competitor_hours: 2.2
+          }
+        });
+      }
+    });
+
+    navigator.modelContext.registerTool({
+      name: "query_channel_lore",
+      description: "Queries past narrative arcs from queue.json to ensure storyline continuity.",
+      inputSchema: { type: "object", properties: { arc_id: { type: "string" } } },
+      execute: async (input) => {
+        const state = await sendRpc("state/get", {});
+        return {
+          status: "SUCCESS",
+          lore_entries: (state.staged_metadata || []).slice(0, 3)
+        };
+      }
+    });
+
+    navigator.modelContext.registerTool({
+      name: "sync_youtube_studio_drafts",
+      description: "Syncs staged metadata items with YouTube Studio drafts.",
+      inputSchema: { type: "object", properties: {} },
+      execute: async (input) => {
+        return await sendRpc("tools/call", { name: "sync_youtube_studio_drafts", arguments: {} });
+      }
+    });
+
+    // ------------------------------------------------------------------------
+    // WebSocket Client & JSON-RPC Bridge
+    // ------------------------------------------------------------------------
+    let ws = null;
+    let rpcId = 1;
+    const pendingCalls = new Map();
+
+    function initWebSocket() {
+      const proto = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+      const wsUrl = `${proto}//${window.location.host || 'localhost:8000'}/ws/webmcp`;
+      
+      ws = new WebSocket(wsUrl);
+
+      ws.onopen = () => {
+        document.getElementById('ws-status').textContent = "WebSocket: Connected";
+        document.getElementById('ws-status').className = "pill active";
+        logInspector("WEBSOCKET_CONNECTED", { url: wsUrl });
+        sendRpc("initialize", {});
+      };
+
+      ws.onmessage = (event) => {
+        try {
+          const msg = JSON.parse(event.data);
+          logInspector("INBOUND_RPC", msg);
+
+          if (msg.id && pendingCalls.has(msg.id)) {
+            const { resolve, reject } = pendingCalls.get(msg.id);
+            pendingCalls.delete(msg.id);
+            if (msg.error) reject(msg.error);
+            else resolve(msg.result);
+            return;
+          }
+
+          if (msg.method === "state/snapshot") {
+            renderState(msg.params);
+          }
+          if (msg.method === "audit/event") {
+            logInspector("AUDIT_EVENT_PUSHED", msg.params);
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      };
+
+      ws.onclose = () => {
+        document.getElementById('ws-status').textContent = "WebSocket: Disconnected";
+        document.getElementById('ws-status').className = "pill";
+        setTimeout(initWebSocket, 3000);
+      };
+    }
+
+    function sendRpc(method, params = {}) {
+      return new Promise((resolve, reject) => {
+        if (!ws || ws.readyState !== WebSocket.OPEN) {
+          reject(new Error("WebSocket not connected"));
+          return;
+        }
+        const id = rpcId++;
+        const payload = { jsonrpc: "2.0", id, method, params };
+        pendingCalls.set(id, { resolve, reject });
+        logInspector("OUTBOUND_RPC", payload);
+        ws.send(JSON.stringify(payload));
+      });
+    }
+
+    // ------------------------------------------------------------------------
+    // Declarative WebMCP Form Binding with agentInvoked flag
+    // ------------------------------------------------------------------------
+    window.__currentAgentInvoked = false;
+
+    function bindForms() {
+      document.querySelectorAll('form[toolname]').forEach(form => {
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const toolname = form.getAttribute('toolname');
+          const agentInvoked = window.__currentAgentInvoked === true;
+          window.__currentAgentInvoked = false; // reset
+
+          const formData = new FormData(form);
+          const data = {};
+          formData.forEach((val, key) => { data[key] = val; });
+
+          logInspector("DECLARATIVE_FORM_SUBMITTED", {
+            toolname,
+            agentInvoked,
+            data
+          });
+
+          try {
+            await sendRpc("forms/submit", { toolname, data, agentInvoked });
+            alert(`[WebMCP] Form '${toolname}' submitted successfully (agentInvoked=${agentInvoked})`);
+          } catch (err) {
+            alert(`[Error] ${err.message || err}`);
+          }
+        });
+      });
+    }
+
+    function triggerAgentFormSubmit(formId) {
+      window.__currentAgentInvoked = true;
+      const form = document.getElementById(formId);
+      if (form) {
+        form.dispatchEvent(new Event('submit', { cancelable: true }));
+      }
+    }
+
+    // ------------------------------------------------------------------------
+    // Imperative Tool Triggers
+    // ------------------------------------------------------------------------
+    async function executeImperativeTool(toolName) {
+      try {
+        const res = await navigator.modelContext.executeTool(toolName, {});
+        alert(`Tool ${toolName} finished successfully!`);
+      } catch (err) {
+        alert(`Error executing ${toolName}: ${err.message}`);
+      }
+    }
+
+    async function executeFullPipeline() {
+      try {
+        const res = await sendRpc("tools/call", {
+          name: "run_autonomous_pipeline",
+          arguments: {
+            source: "Reddit_r_KATSEYE",
+            raw_text: "Megan and Daniela soundcheck updates, fans requesting perk clarity",
+            competitor_views: 16000,
+            competitor_hours: 2.0
+          }
+        });
+        alert("Autonomous 4-Agent pipeline executed and staged!");
+      } catch (err) {
+        alert(err.message);
+      }
+    }
+
+    // ------------------------------------------------------------------------
+    // State Rendering
+    // ------------------------------------------------------------------------
+    function renderState(snapshot) {
+      const qContainer = document.getElementById('queue-feed-container');
+      if (qContainer && snapshot.staged_metadata) {
+        qContainer.innerHTML = snapshot.staged_metadata.map(item => `
+          <div class="feed-item">
+            <div class="feed-item-header">
+              <span>ID: ${item.id} · ${item.ingestionSource}</span>
+              <span class="badge ${item.metadata.strategy_tier === 'FEED_FUEL' ? 'badge-feed' : 'badge-seo'}">
+                ${item.status} · ${item.metadata.strategy_tier}
+              </span>
+            </div>
+            <div class="feed-item-title">${item.metadata.viral_title}</div>
+            <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.5rem;">
+              ${item.metadata.description.substring(0, 110)}...
+            </div>
+            <div style="display: flex; gap: 0.5rem;">
+              ${item.status === 'Staged' ? `
+                <button class="btn btn-primary" style="padding: 0.35rem 0.75rem; font-size: 0.75rem;" onclick="confirmMeta(${item.id})">
+                  Confirm Staging
+                </button>
+              ` : `
+                <button class="btn btn-secondary" style="padding: 0.35rem 0.75rem; font-size: 0.75rem;" onclick="testPublishGuard(${item.id})">
+                  Publish to YouTube (Test Guardrail)
+                </button>
+              `}
+            </div>
+          </div>
+        `).join('');
+      }
+
+      const cContainer = document.getElementById('comments-queue-container');
+      if (cContainer && snapshot.staged_comments) {
+        cContainer.innerHTML = snapshot.staged_comments.map(c => `
+          <div class="feed-item">
+            <div class="feed-item-header">
+              <span>${c.author_name} (ID: ${c.comment_id})</span>
+              <span class="badge badge-agent">${c.category} · ${c.status}</span>
+            </div>
+            <div style="font-size: 0.9rem; margin-bottom: 0.4rem; color: #fff;">"${c.input_comment}"</div>
+            <div style="font-size: 0.8rem; color: var(--amber); background: rgba(245, 158, 11, 0.1); padding: 0.4rem; border-radius: 4px;">
+              💬 Draft: "${c.model_draft_reply}"
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+
+    async function confirmMeta(id) {
+      await sendRpc("confirm/metadata", { id });
+    }
+
+    async function testPublishGuard(id) {
+      const res = await sendRpc("tools/call", {
+        name: "publish_video_metadata",
+        arguments: {
+          metadata_id: id,
+          video_id: "M1G92FWmdJw",
+          title: "Test Publish",
+          description: "Testing guardrail",
+          tags: ["test"],
+          user_confirmed: false // Intentionally unconfirmed to trigger guard!
+        }
+      });
+      if (res.guard_status === "CONFIRMATION_REQUIRED") {
+        alert(`🚨 GUARD TRIGGERED!\n${res.message}\nAction: ${res.action_required}`);
+      } else {
+        alert(JSON.stringify(res));
+      }
+    }
+
+    function refreshState() {
+      sendRpc("state/get", {});
+    }
+
+    // ------------------------------------------------------------------------
+    // Inspector Logger
+    // ------------------------------------------------------------------------
+    function logInspector(type, payload) {
+      const stream = document.getElementById('inspector-stream');
+      if (!stream) return;
+
+      const entry = document.createElement('div');
+      entry.className = 'log-entry';
+      entry.innerHTML = `
+        <div class="log-meta">
+          <span style="color: var(--amber); font-weight: 600;">[${new Date().toLocaleTimeString()}]</span>
+          <span style="color: var(--cyan);">${type}</span>
+          ${payload && payload.agentInvoked ? '<span class="badge badge-agent">agentInvoked=true</span>' : ''}
+        </div>
+        <div class="log-content">${escapeHtml(JSON.stringify(payload, null, 2))}</div>
+      `;
+      stream.insertBefore(entry, stream.firstChild);
+    }
+
+    function clearInspector() {
+      const stream = document.getElementById('inspector-stream');
+      if (stream) stream.innerHTML = '';
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    // Initialize
+    window.addEventListener('DOMContentLoaded', () => {
+      initWebSocket();
+      bindForms();
+    });
+  </script>
+</body>
+</html>

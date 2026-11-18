@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SovereignReplyPayload",
+  "type": "object",
+  "properties": {
+    "category": {
+      "type": "string",
+      "enum": [
+        "HYPE",
+        "DANCE_CHOREO",
+        "FASHION_AESTHETIC",
+        "BANTER",
+        "TROLL_OR_HATER",
+        "UNINDEXED_OR_OFFTOPIC"
+      ]
+    },
+    "sovereign_mode": {
+      "type": "string",
+      "enum": [
+        "Warm Grace (SUPPORTER)",
+        "Join the Joke (JOKE_NON_HATE)",
+        "Razor-Sharp Sarcasm (LOW_EFFORT_BAIT)",
+        "Deliberately Messy (THEATRICAL_OPENING)"
+      ]
+    },
+    "reply_text": {
+      "type": "string",
+      "description": "Strictly 1-sentence sovereign reply obeying the 12-word Brevity Cap."
+    },
+    "word_count": {
+      "type": "integer",
+      "maximum": 12
+    }
+  },
+  "required": [
+    "category",
+    "sovereign_mode",
+    "reply_text",
+    "word_count"
+  ]
+}

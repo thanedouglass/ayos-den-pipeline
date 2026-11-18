@@ -1,0 +1,23 @@
+{
+  "name": "ayos-den-pipeline",
+  "version": "2.0.0",
+  "description": "Ayo's Den & IoChat Studio: Unified Google ADK Agent Engine & Browser-Native WebMCP Command Deck",
+  "main": "app/server.py",
+  "type": "module",
+  "scripts": {
+    "start": ".venv/bin/uvicorn app.server:app --host 0.0.0.0 --port 8000 --reload",
+    "test": ".venv/bin/pytest tests/ -v",
+    "legacy:run": "node pipeline.js",
+    "legacy:init": "node init-engine.js"
+  },
+  "keywords": [
+    "google-adk",
+    "webmcp",
+    "modelcontext",
+    "youtube-automation",
+    "ayos-den",
+    "iochat"
+  ],
+  "author": "",
+  "license": "ISC"
+}
